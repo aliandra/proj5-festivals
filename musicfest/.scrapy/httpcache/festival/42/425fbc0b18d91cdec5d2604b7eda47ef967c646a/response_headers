@@ -1,0 +1,13 @@
+X-Cache: MISS
+Content-Encoding: gzip
+Vary: Accept-Encoding,Cookie
+X-Cacheable: SHORT
+Server: nginx
+X-Pass-Why: 
+X-Cache-Group: normal
+Link: <https://www.musicfestivalwizard.com/wp-json/>; rel="https://api.w.org/"
+Link: <https://www.musicfestivalwizard.com/?p=26232>; rel=shortlink
+Cache-Control: max-age=600, must-revalidate
+Date: Thu, 09 Mar 2017 00:37:46 GMT
+X-Type: default
+Content-Type: text/html; charset=UTF-8
