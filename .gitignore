@@ -1,1 +1,5 @@
 config.py
+artist_average.pk1
+artist_info.pk1
+artist_tracks.pk1
+audio_features.pk1
