@@ -4,3 +4,8 @@ artist_info.pk1
 artist_tracks.pk1
 audio_features.pk1
 musicfest/scrapy_festivals.json
+config.pyc
+fest_genres_norm.pk1
+music_genres.csv
+music_genres.ods
+pretty_festivals.json
