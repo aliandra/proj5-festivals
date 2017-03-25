@@ -1,201 +1,210 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <!--Import Google Icon Font-->
-    <!-- <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-    
-    <!--Import Font Awesome-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<head>
+				<!--Import Google Icon Font-->
+				<!-- <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+				
+				<!--Import Font Awesome-->
+				<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css"  media="screen,projection"/>
+				<!--Import materialize.css-->
+				<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css"  media="screen,projection"/>
 
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  </head>
+				<!--Let browser know website is optimized for mobile-->
+				<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		</head>
 
-  <body>
-    <div class="navbar-fixed">
-      <nav>
-        <div class="nav-wrapper amber darken-2">
-          <a href="#" class="brand-logo">&nbsp;&nbsp;Festival<span class='fa fa-child'></span>Recommender</a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="#discover">Discover</a></li>
-            <li><a href="#curate">Curate</a></li>
-            <li><a href="#about">About</a></li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-    <div class='bigbg' style='height: 100vh; margin-top: -2rem; display: flex; background-size: cover; background-image: url("https://campusinvolvement.umich.edu/files/campusinvolvement/field/image/music-festival-midtown-miami.jpg");'>
-      <div style='position: absolute; width: 100%; height: 100%; background-color: rgba(0,0,0,.3);'></div>
-      <div class='container' style='align-self: center; z-index: 1;'>
-        <h3 class='white-text'><span>Discover the right music festival. Curate your experience. Our algorithm can help.</span></h3>
-        <p class='center-align'><br/><a href='#discover' class="waves-effect waves-light btn-large pink lighten-2">Discover</a>&emsp;<a href='#curate' class="waves-effect waves-light btn-large pink lighten-2">Curate</a></p>
-      </div>
-    </div>
-    <div class='bigbg valign-wrapper blue-grey lighten-5' style='height: 60vh;'>
-      <div class='container'>
-        <p class='flow-text'>We use a neural net combined with linear regression, feature-modeling, and a whole bunch of dark magic Horcrux stuff we really can't get into right now. We learned all this hocus-pocus at Metis Inc.</p>
-      </div>
-    </div>
-    <section id='discover' class='bigbg valign-wrapper' style='height: 100vh; background-size: cover; background-image: url("images/festpic.jpg");'>
-      <div class='container'>
-        <div class='row'>
-          <div class='col s6'>
-            <!-- Empty Column -->
-          </div>
-          <div class='col s6'>
-            <div class="card-panel blue-grey lighten-5">
-              <h4>Discover Events</h4>
-              <span>Log into Spotify or choose some bands, and we'll find festivals that match your taste. You can filter the results.</span>
-              <p class='right-align'><a href='#modal' class="waves-effect waves-light btn-large  pink lighten-2">Get Started</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <div class='bigbg valign-wrapper blue-grey lighten-5' style='height: 60vh;'>
-      <div class='container'>
-        <p class='flow-text'>Something something machine net neuromancer cyberspace digital platform</p>
-        <blockquote>I think they might really be onto something here. <br/>&mdash;Cyberdyne Systems</blockquote>
-        <blockquote>I'm fluent in over 6 million forms of communication, and I still don't have the words to describe how great this is.<br/>&mdash;C3P0</blockquote>
-        <blockquote>I'm afraid I can't let this genius go unnoticed, Dave. <br/>&mdash;Hal</blockquote>
-        <br/>
-        <br/>
-      </div>
-    </div>
-    <section id='curate' class='bigbg valign-wrapper' style='height: 100vh; background-size: cover; background-position: 0% 50%; background-image: url("http://mediad.publicbroadcasting.net/p/nhpr/files/201504/Telluride.jpg");'>
-      <div class='container'>
-        <div class='row'>
-          <div class='col s8'>
-            <div class="card-panel blue-grey lighten-5">
-              <h4>Curate the Bands</h4>
-              <form>
-                Show the top 5 bands and a Show More link.<br/><br/>
-                <div class='row'>
-                  <div class='col s12'>
-                    <input placeholder="Artist Name" id="first_name" type="text" class="validate">
-                  </div>
-                </div>
-              </form>
-              <div class='row'>
-                <div class='col s2'>
-                  <a class='tooltipped' data-position="bottom" data-delay="50" data-tooltip="Band Name Here">
-                  <img class='responsive-img circle' src='https://s3.amazonaws.com/uifaces/faces/twitter/zeldman/128.jpg' alt='fakeuser' />
-                  </a>
-                </div>
-                <div class='col s2'>
-                  <a class='tooltipped' data-position="bottom" data-delay="50" data-tooltip="Band Name Here">
-                  <img class='responsive-img circle' src='https://s3.amazonaws.com/uifaces/faces/twitter/c_southam/128.jpg' alt='fakeuser' />
-                  </a>
-                </div>
-                <div class='col s2'>
-                  <a class='tooltipped' data-position="bottom" data-delay="50" data-tooltip="Band Name Here">
-                  <img class='responsive-img circle' src='https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg' alt='fakeuser' />
-                  </a>
-                </div>
-                <div class='col s2'>
-                  <a class='tooltipped' data-position="bottom" data-delay="50" data-tooltip="Band Name Here">
-                  <img class='responsive-img circle' src='https://s3.amazonaws.com/uifaces/faces/twitter/admod/128.jpg' alt='fakeuser' />
-                  </a>
-                </div>
-              </div>
-              <p class='right-align'><a href='#modal' class="waves-effect waves-light btn-large pink lighten-2">Curate</a></p>
-            </div>
-          </div>
-          <div class='col s4'>
-          </div>
-        </div>
-      </div>
-    </section>
-    <div id='about' class='bigbg valign-wrapper blue-grey lighten-5' style='height: 60vh;'>
-      <div class='container'>
-        <p class='flow-text center-align'>Got a question? Our neural net already knows what you're thinking - it emailed you the answer a second ago. Just kidding. But you should totally get in touch if you're interested.</p>
-        <p class='flow-text center-align'><a href='#'>email@address.com</a>, or maybe <a href='#'>@twitterhandle</a>.</p>
-      </div>
-    </div>
-    <footer class="page-footer amber darken-2">
-      <div class="container">
-        <div class="row">
-          <div class="col l6 s12">
-            <h5 class="white-text">Festival Recommender</h5>
-            <p class="grey-text text-lighten-4">This is honestly the coolest name for any project you've ever seen.</p>
-          </div>
-          <div class="col l4 offset-l2 s12">
-            <h5 class="white-text">Supported By</h5>
-            <ul>
-              <li><a class="grey-text text-lighten-3" href="#!">Python</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Flask</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Materialize CSS</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">SciPyLearnPickleKit</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Sam Kelly Inc.</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="footer-copyright">
-        <div class="container">
-        © 2017 Copyright ALEXANDRA M PHELAN
-        <a class="grey-text text-lighten-4 right" href="#!">Like we have a Privacy Policy lol</a>
-        </div>
-      </div>
-    </footer>
+		<body>
+				<div class="navbar-fixed">
+						<nav>
+								<div class="nav-wrapper amber darken-2">
+										<a href="#" class="brand-logo">&nbsp;&nbsp;Festival<span class='fa fa-child'></span>Recommender</a>
+										<ul id="nav-mobile" class="right hide-on-med-and-down">
+												<li><a href="#discover">Discover</a></li>
+												<li><a href="#curate">Curate</a></li>
+												<li><a href="#about">About</a></li>
+										</ul>
+								</div>
+						</nav>
+				</div>
+				<div class='bigbg' style='height: 100vh; margin-top: -2rem; display: flex; background-size: cover; background-image: url("https://campusinvolvement.umich.edu/files/campusinvolvement/field/image/music-festival-midtown-miami.jpg");'>
+						<div style='position: absolute; width: 100%; height: 100%; background-color: rgba(0,0,0,.3);'></div>
+						<div class='container' style='align-self: center; z-index: 1;'>
+								<h3 class='white-text'><span>Discover the right music festival. Curate your experience. Our algorithm can help.</span></h3>
+								<p class='center-align'><br/><a href='#discover' class="waves-effect waves-light btn-large pink lighten-2">Discover</a>&emsp;<a href='#curate' class="waves-effect waves-light btn-large pink lighten-2">Curate</a></p>
+						</div>
+				</div>
+				<div class='bigbg valign-wrapper blue-grey lighten-5' style='height: 60vh;'>
+						<div class='container'>
+								<p class='flow-text' style='font-size:30px'>Our recommendation system was built using machine learning techniques to help you find a music lineup you'll love. Results can be filtered to further personalize your festival experience.</p>
+						</div>
+				</div>
+				<section id='discover' class='bigbg valign-wrapper' style='height: 100vh; background-size: cover; background-image: url("static/images/festpic.jpg");'>
+						<div class='container'>
+								<div class='row'>
+										<div class='col s6'>
+												<!-- Empty Column -->
+										</div>
+										<div class='col s6'>
+												<div class="card-panel blue-grey lighten-5">
+														<h4>Discover Events</h4>
+														<span>Log into Spotify or choose some bands, and we'll find festivals that match your taste. You can filter the results.</span>
+														<p class='right-align'><a href='#modal' class="waves-effect waves-light btn-large  pink lighten-2">Get Started</a></p>
+												</div>
+										</div>
+								</div>
+						</div>
+				</section>
+				<div class='bigbg valign-wrapper blue-grey lighten-5' style='height: 60vh;'>
+						<div class='container'>
+								<p class='flow-text'></p>
+								<br/>
+								<br/>
+						</div>
+				</div>
+				<section id='curate' class='bigbg valign-wrapper' style='height: 100vh; background-size: cover; background-position: 0% 50%; background-image: url("http://mediad.publicbroadcasting.net/p/nhpr/files/201504/Telluride.jpg");'>
+						<div class='container'>
+								<div class='row'>
+										<div class='col s8'>
+												<div class="card-panel blue-grey lighten-5">
+														<h4>Curate the Bands</h4>
+														<form>
+																Show the top 5 bands and a Show More link.<br/><br/>
+																<div class='row'>
+																		<div class='col s12'>
+																				<input placeholder="Comma-separated list of artists, no typoss" type="text" class="validate">
+																		</div>
+																</div>
+														</form>
+														<div class='row'>
+																<!--<div class='col s2'>
+																		<a class='tooltipped' data-position="bottom" data-delay="50" data-tooltip="Band Name Here">
+																		<img class='responsive-img circle' src='https://s3.amazonaws.com/uifaces/faces/twitter/zeldman/128.jpg' alt='fakeuser' />
+																		</a>
+																</div>
+																<div class='col s2'>
+																		<a class='tooltipped' data-position="bottom" data-delay="50" data-tooltip="Band Name Here">
+																		<img class='responsive-img circle' src='https://s3.amazonaws.com/uifaces/faces/twitter/c_southam/128.jpg' alt='fakeuser' />
+																		</a>
+																</div>
+																<div class='col s2'>
+																		<a class='tooltipped' data-position="bottom" data-delay="50" data-tooltip="Band Name Here">
+																		<img class='responsive-img circle' src='https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg' alt='fakeuser' />
+																		</a>
+																</div>
+																<div class='col s2'>
+																		<a class='tooltipped' data-position="bottom" data-delay="50" data-tooltip="Band Name Here">
+																		<img class='responsive-img circle' src='https://s3.amazonaws.com/uifaces/faces/twitter/admod/128.jpg' alt='fakeuser' />
+																		</a>
+																</div>-->
+														</div>
+														<p class='right-align'><a href='#modal' id='curate_festivals_button' class="waves-effect waves-light btn-large pink lighten-2">Curate</a></p>
+												</div>
+										</div>
+										<div class='col s4'>
+										</div>
+								</div>
+						</div>
+				</section>
+				<div id='about' class='bigbg valign-wrapper blue-grey lighten-5' style='height: 60vh;'>
+						<div class='container'>
+								<p class='flow-text center-align' style='font-size:40px'>Got a question? Get in touch!</p>
+								<p class='flow-text center-align'><a href='#'>alexandramphelan@gmail.com</a></p>
+						</div>
+				</div>
+				<footer class="page-footer amber darken-2">
+						<div class="container">
+								<div class="row">
+										<div class="col l6 s12">
+												<h5 class="white-text">Festival Recommender</h5>
+												<p class="grey-text text-lighten-4">Find your favorite festival!</p>
+										</div>
+										<div class="col l4 offset-l2 s12">
+												<h5 class="white-text">Supported By</h5>
+												<ul>
+														<li><a class="grey-text text-lighten-3" href="#!">Python</a></li>
+														<li><a class="grey-text text-lighten-3" href="#!">Flask</a></li>
+														<li><a class="grey-text text-lighten-3" href="#!">Materialize CSS</a></li>
+														<li><a class="grey-text text-lighten-3" href="#!">SciKit-Learn</a></li>
+														<li><a class="grey-text text-lighten-3" href="#!">Sam Kelly Inc.</a></li>
+												</ul>
+										</div>
+								</div>
+						</div>
+						<div class="footer-copyright">
+								<div class="container">
+								© 2017 Copyright ALEXANDRA M PHELAN
+								<a class="grey-text text-lighten-4 right" href="#!">Like we have a Privacy Policy lol</a>
+								</div>
+						</div>
+				</footer>
 
-    <div id="modal" class="modal">
-      <div class="modal-content">
-        <h4>What do you even like tho?</h4>
-        <div class="row">
-          <div class="col s12">
-            <ul class="tabs">
-              <li class="tab col s3"><a class="active" href="#test1">Select Artists</a></li>
-              <li class="tab col s3"><a href="#test2"><span class='fa fa-spotify'></span>&nbsp;Spotify</a></li>
-            </ul>
-          </div>
-          <div id="test1" class="col s12">
-            <p class='flow-text'>Start typing and select 5 bands you might like to see, and we'll do the rest. Connect with Spotify if you'd like a more personalized recommendation.</p>
-            <div class='row'>
-              <div class='col s12'>
-                <input placeholder="Artist Name" id="first_name" type="text" class="validate">
-              </div>
-            </div>
-            <div class='row'>
-              <div class='col s12'>
-                <input placeholder="Artist Name" id="first_name" type="text" class="validate">
-              </div>
-            </div>
-            <div class='row'>
-              <div class='col s12'>
-                <input placeholder="Artist Name" id="first_name" type="text" class="validate">
-              </div>
-            </div>
-            <div class='row'>
-              <div class='col s12'>
-                <input placeholder="Artist Name" id="first_name" type="text" class="validate">
-              </div>
-            </div>
-            <div class='row'>
-              <div class='col s12'>
-                <input placeholder="Artist Name" id="first_name" type="text" class="validate">
-              </div>
-            </div>
-          </div>
-          <div id="test2" class="col s12">
-            <p class='flow-text'>Connect with Spotify and we'll use your music preferences to help find better entertainment.</p>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Log In</a>
-      </div>
-    </div>
-    <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function(){
-      $('#modal').modal();
-    })
-    </script>
-  </body>
+				<div id="modal" class="modal">
+						<div class="modal-content">
+								<h4>What do you even like tho?</h4>
+								<div class="row">
+										<div class="col s12">
+												<ul class="tabs">
+														<li class="tab col s3"><a class="active" href="#test1">Select Artists</a></li>
+														<li class="tab col s3"><a href="#test2"><span class='fa fa-spotify'></span>&nbsp;Spotify</a></li>
+												</ul>
+										</div>
+										<div id="test1" class="col s12">
+												<p class='flow-text'>Start typing and select 5 bands you might like to see, and we'll do the rest. Connect with Spotify if you'd like a more personalized recommendation.</p>
+												<div class='row'>
+														<div class='col s12'>
+																<input placeholder="Artist Names" id="artist_name_input" type="text" class="validate">
+														</div>
+																<p class='center-align' id='artist_listing'></p>
+																<p class='right-align'>
+																<a href="#!" id='search_artists_button' class="waves-effect waves-green btn-flat">SEARCH</a>
+																</p>
+														</div>
+												</div>
+										</div>
+										<div id="test2" class="col s12">
+												<p class='flow-text'>Connect with Spotify and we'll use your music preferences to help find better entertainment.</p>
+												<p class='right-align'><a href="#!" class="waves-effect waves-green btn-flat">LOG IN</a></p>
+										</div>
+								</div>
+						</div>
+						<div class="modal-footer">
+						</div>
+				</div>
+				<!--Import jQuery before materialize.js-->
+				<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+				<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+				<script type="text/javascript">
+				$(document).ready(function(){
+						$('#modal').modal();
+
+
+						$('#search_artists_button').click( function( e ) {
+							e.preventDefault();
+							console.log( 'Clicked on discover festivals', e );
+							var artistNames = $('#artist_name_input').val();
+							console.log('Artist names is: ', artistNames);
+							var names = artistNames.split(',');
+							console.log( 'Now names is ', names );
+							$.ajax({
+								method: 'POST',
+								url: 'http://localhost:5000/findfest',
+								data: JSON.stringify({
+									'bands': names
+								}),
+								processData: false,
+								contentType: 'application/json',
+							})
+							.success( function( successResponse ) {
+								console.log( 'Got success from the server: ', successResponse );
+								$('#artist_listing').text(successResponse);
+							} )
+							.error( function( errorResponse ) {
+								console.log( 'Got an error from the server: ', errorResponse );
+							} );
+						} );
+
+				})
+				</script>
+		</body>
 </html>
