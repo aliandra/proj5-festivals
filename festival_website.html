@@ -55,13 +55,15 @@
 								</div>
 						</div>
 				</section>
-				<div class='bigbg valign-wrapper blue-grey lighten-5' style='height: 60vh;'>
+				<section id='festival_recs_container' class='bigbg valign-wrapper blue-grey lighten-5' style='min-height: 60vh;'>
 						<div class='container'>
+							<div id='festival_recs'>
+							</div>	
 								<p class='flow-text'></p>
 								<br/>
 								<br/>
 						</div>
-				</div>
+				</section>
 				<section id='curate' class='bigbg valign-wrapper' style='height: 100vh; background-size: cover; background-position: 0% 50%; background-image: url("http://mediad.publicbroadcasting.net/p/nhpr/files/201504/Telluride.jpg");'>
 						<div class='container'>
 								<div class='row'>
@@ -153,7 +155,7 @@
 												<p class='flow-text'>Start typing and select 5 bands you might like to see, and we'll do the rest. Connect with Spotify if you'd like a more personalized recommendation.</p>
 												<div class='row'>
 														<div class='col s12'>
-																<input placeholder="Artist Names" id="artist_name_input" type="text" class="validate">
+																<input autofocus placeholder="Artist Names" id="artist_name_input" type="text" class="validate">
 														</div>
 																<p class='center-align' id='artist_listing'></p>
 																<p class='right-align'>
@@ -175,6 +177,35 @@
 				<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 				<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
 				<script type="text/javascript">
+
+				function sortFestivalsByDistance( a, b ){
+					if(a.distance > b.distance){
+						return -1;
+					}else if( a.distance < b.distance ){
+						return 1
+					}else{
+						return 0;
+					}
+				}
+				function mapFestivalToElement( festival ){
+					var html = '<li class="collection-item">';
+					html += '<div class="row">';
+					html += '<div class="col s3">';
+					html += '<img src="'+festival.image+'" alt="Image"/>';
+					html += '</div>';
+					html += '<div class="col s9">';
+					html += '<h4><a href="'+festival.website+'">' + festival.name + '</a></h4>';
+					html += '<p class="flow-text">' + festival.location + '&emsp;' + festival.start_date.substr(0, festival.start_date.length-13) + '&mdash;' + festival.end_date.substr(0, festival.end_date.length-13) + '</p>';
+
+					html += '<p><span style="text-transform: capitalize;">' + festival.lineup.slice(0, 5).join(', ') + '</span>' + (festival.lineup.length > 5 ? ('... plus ' + ( festival.lineup.length - 5 ) + ' more bands.') : '') + '</p>';
+					html += '</div>';
+					html += '</div>';
+					html += '</li>';
+					return html;
+				}
+				function reduceFestivalsToHTML( accum, item ){
+					return accum + item;
+				}
 				$(document).ready(function(){
 						$('#modal').modal();
 
@@ -197,7 +228,24 @@
 							})
 							.success( function( successResponse ) {
 								console.log( 'Got success from the server: ', successResponse );
-								$('#artist_listing').text(successResponse);
+
+								var festivalList = successResponse
+									.sort(sortFestivalsByDistance)
+									.map(mapFestivalToElement)
+									.slice(0, 5)
+									.reduce(reduceFestivalsToHTML);
+
+								var festivalRecs = '<h3>Festivals</h3>';
+								festivalRecs += '<ul class="collection">';
+								festivalRecs += festivalList;
+								festivalRecs += '</ul>';
+								$('#festival_recs').append(festivalRecs);
+							
+
+								$('html, body').animate({
+									scrollTop: $('#festival_recs_container').offset().top,
+								})
+								$('#modal').modal('close');
 							} )
 							.error( function( errorResponse ) {
 								console.log( 'Got an error from the server: ', errorResponse );
