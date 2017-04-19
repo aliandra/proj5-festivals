@@ -12,17 +12,24 @@
 
 				<!--Let browser know website is optimized for mobile-->
 				<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+				<style>
+				.band-listing{
+					padding-left: .75rem; padding-right: .75rem;
+					white-space: nowrap;
+				}
+				</style>
 		</head>
 
 		<body>
 				<div class="navbar-fixed">
 						<nav>
 								<div class="nav-wrapper amber darken-2">
-										<a href="#" class="brand-logo">&nbsp;&nbsp;Festival<span class='fa fa-child'></span>Recommender</a>
-										<ul id="nav-mobile" class="right hide-on-med-and-down">
-												<li><a href="#discover">Discover</a></li>
-												<li><a href="#curate">Curate</a></li>
-												<li><a href="#about">About</a></li>
+										<a href="#" class="brand-logo">&nbsp;&nbsp;bandwagon</a>
+										<ul id="nav-mobile" class="right hide-on-med-and-down" style='font-weight: bold;'>
+												<li><a href="#discover">DISCOVER</a></li>
+												<li><a href="#curate">CURATE</a></li>
+												<li><a href="#map">MAP</a></li>
+												<li><a href="#about">ABOUT</a></li>
 										</ul>
 								</div>
 						</nav>
@@ -30,13 +37,16 @@
 				<div class='bigbg' style='height: 100vh; margin-top: -2rem; display: flex; background-size: cover; background-image: url("https://campusinvolvement.umich.edu/files/campusinvolvement/field/image/music-festival-midtown-miami.jpg");'>
 						<div style='position: absolute; width: 100%; height: 100%; background-color: rgba(0,0,0,.3);'></div>
 						<div class='container' style='align-self: center; z-index: 1;'>
-								<h3 class='white-text'><span>Discover the right music festival. Curate your experience. Our algorithm can help.</span></h3>
+								<h3 class='white-text center-align'><span>Discover the right music festival. Curate your experience.</span></h3>
+								<h3 class='white-text center-align'><span>Our algorithm can help.</span></h3>
 								<p class='center-align'><br/><a href='#discover' class="waves-effect waves-light btn-large pink lighten-2">Discover</a>&emsp;<a href='#curate' class="waves-effect waves-light btn-large pink lighten-2">Curate</a></p>
 						</div>
 				</div>
 				<div class='bigbg valign-wrapper blue-grey lighten-5' style='height: 60vh;'>
 						<div class='container'>
-								<p class='flow-text' style='font-size:30px'>Our recommendation system was built using machine learning techniques to help you find a music lineup you'll love. Results can be filtered to further personalize your festival experience.</p>
+								<p class='flow-text center-align' style='font-size:30px'>
+									Our recommendation system was built using machine learning techniques to help you find a music lineup you'll love.
+								</p>
 						</div>
 				</div>
 				<section id='discover' class='bigbg valign-wrapper' style='height: 100vh; background-size: cover; background-image: url("static/images/festpic.jpg");'>
@@ -48,8 +58,11 @@
 										<div class='col s6'>
 												<div class="card-panel blue-grey lighten-5">
 														<h4>Discover Events</h4>
-														<span>Log into Spotify or choose some bands, and we'll find festivals that match your taste. You can filter the results.</span>
-														<p class='right-align'><a href='#modal' class="waves-effect waves-light btn-large  pink lighten-2">Get Started</a></p>
+														<p class='flow-text'>Type in your favorite artist to get started.</p>
+														<form id='discover_festivals_form'>
+															<input autofocus placeholder="Enter band names and press enter" id="discover_artist_input" type="text" class="validate">
+															<p class='right-align'><button type='submit' href='#' id='find_festivals_button' class="waves-effect waves-light btn-large pink lighten-2">Find Festivals</button></p>
+														</form>
 												</div>
 										</div>
 								</div>
@@ -57,50 +70,23 @@
 				</section>
 				<section id='festival_recs_container' class='bigbg valign-wrapper blue-grey lighten-5' style='min-height: 60vh;'>
 						<div class='container'>
-							<div id='festival_recs'>
-							</div>	
-								<p class='flow-text'></p>
-								<br/>
-								<br/>
+							<div id='festival_recs'></div>
+							<p class='flow-text'></p>
+							<br/>
+							<br/>
 						</div>
 				</section>
-				<section id='curate' class='bigbg valign-wrapper' style='height: 100vh; background-size: cover; background-position: 0% 50%; background-image: url("http://mediad.publicbroadcasting.net/p/nhpr/files/201504/Telluride.jpg");'>
+				<section id='curate' class='bigbg valign-wrapper' style='min-height: 100vh; background-size: cover; background-position: 0% 50%; background-image: url("http://68.media.tumblr.com/8edcbd2a4fe1b5a91157acad9451c027/tumblr_nefk3vU7ml1tds41jo9_1280.jpg");'>
 						<div class='container'>
 								<div class='row'>
-										<div class='col s8'>
+										<div class='col s6'>
 												<div class="card-panel blue-grey lighten-5">
-														<h4>Curate the Bands</h4>
-														<form>
-																Show the top 5 bands and a Show More link.<br/><br/>
-																<div class='row'>
-																		<div class='col s12'>
-																				<input placeholder="Comma-separated list of artists, no typoss" type="text" class="validate">
-																		</div>
-																</div>
-														</form>
-														<div class='row'>
-																<!--<div class='col s2'>
-																		<a class='tooltipped' data-position="bottom" data-delay="50" data-tooltip="Band Name Here">
-																		<img class='responsive-img circle' src='https://s3.amazonaws.com/uifaces/faces/twitter/zeldman/128.jpg' alt='fakeuser' />
-																		</a>
-																</div>
-																<div class='col s2'>
-																		<a class='tooltipped' data-position="bottom" data-delay="50" data-tooltip="Band Name Here">
-																		<img class='responsive-img circle' src='https://s3.amazonaws.com/uifaces/faces/twitter/c_southam/128.jpg' alt='fakeuser' />
-																		</a>
-																</div>
-																<div class='col s2'>
-																		<a class='tooltipped' data-position="bottom" data-delay="50" data-tooltip="Band Name Here">
-																		<img class='responsive-img circle' src='https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg' alt='fakeuser' />
-																		</a>
-																</div>
-																<div class='col s2'>
-																		<a class='tooltipped' data-position="bottom" data-delay="50" data-tooltip="Band Name Here">
-																		<img class='responsive-img circle' src='https://s3.amazonaws.com/uifaces/faces/twitter/admod/128.jpg' alt='fakeuser' />
-																		</a>
-																</div>-->
-														</div>
-														<p class='right-align'><a href='#modal' id='curate_festivals_button' class="waves-effect waves-light btn-large pink lighten-2">Curate</a></p>
+														<h4 id='curate_festival_title'>Curate the Bands</h4>
+														<span>All set with a festival and want to know what performers to see? Get recommendations here!</span>
+														<p id='curate_festival_band_results' class='flow-text'></p>
+														<!--
+														<p class='right-align'><a href='#modal2' id='curate_festivals_button' class="waves-effect waves-light btn-large pink lighten-2">Curate</a></p>
+														-->
 												</div>
 										</div>
 										<div class='col s4'>
@@ -108,6 +94,18 @@
 								</div>
 						</div>
 				</section>
+				<div id='curated_festival_results' class='bigbg valign-wrapper teal lighten-2' style='min-height: 60vh; padding-top:10rem; padding-bottom: 10rem; display: none;'>
+						<div class='container'>
+							<div class='row'>
+								<div class='col s12'>
+									<div id='band_recs' class='center-align'></div>
+									<br/>
+									<h3 class="center-align"><span id='selected_festival_title'></span> Lineup</h3>
+								</div>
+							</div>
+							<p id='curate_band_results_text' class='flow-text center-align'>lololololol</p>
+						</div>
+				</div>
 				<div id='about' class='bigbg valign-wrapper blue-grey lighten-5' style='height: 60vh;'>
 						<div class='container'>
 								<p class='flow-text center-align' style='font-size:40px'>Got a question? Get in touch!</p>
@@ -118,8 +116,8 @@
 						<div class="container">
 								<div class="row">
 										<div class="col l6 s12">
-												<h5 class="white-text">Festival Recommender</h5>
-												<p class="grey-text text-lighten-4">Find your favorite festival!</p>
+												<h4 class="white-text">bandwagon</h4>
+												<p class="grey-text text-lighten-4">Because Learning Man wasn't a good enough name. Find your favorite festival!</p>
 										</div>
 										<div class="col l4 offset-l2 s12">
 												<h5 class="white-text">Supported By</h5>
@@ -152,7 +150,7 @@
 												</ul>
 										</div>
 										<div id="test1" class="col s12">
-												<p class='flow-text'>Start typing and select 5 bands you might like to see, and we'll do the rest. Connect with Spotify if you'd like a more personalized recommendation.</p>
+												<p class='flow-text'>Start typing your favorite artists, and we'll do the rest. Connect with Spotify to skip all this hard work.</p>
 												<div class='row'>
 														<div class='col s12'>
 																<input autofocus placeholder="Artist Names" id="artist_name_input" type="text" class="validate">
@@ -173,50 +171,196 @@
 						<div class="modal-footer">
 						</div>
 				</div>
+
+				<div id="spotify_modal" class="modal">
+						<div class="modal-content">
+								<h4>Connect to Spotify</h4>
+								<div class="row">
+										<div class="col s12">
+												<p class="lead">Connect with Spotify</p>
+										</div>
+								</div>
+						</div>
+						<div class="modal-footer">
+						</div>
+				</div>
 				<!--Import jQuery before materialize.js-->
 				<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 				<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
 				<script type="text/javascript">
+				var savedBands = [],
+						savedFestivals = [];
 
+				function selectedFestival( e ) {
+					// Stop the default scrolltotop behavior on a # link
+					e.preventDefault();
+					var $id = $(this).data('festivalid');
+
+					var selectedFestival = savedFestivals.filter( function( f ) {
+						if( f.id === $id ){
+							return true;
+						}else{
+							return false;
+						}
+					})[0];
+
+					var	$festivalTitleElement = $('#selected_festival_title'),
+							$festivalBandResults 	= $('#curate_festival_band_results'),
+							$festivalBandResultsText = $('#curate_band_results_text'),
+							$festivalBandResultsWrapper = $('#curated_festival_results'),
+							$bandCircles = $('#selected_bands');
+
+					var lineup = selectedFestival.lineup
+						.map( function( band ) {
+							return '<span class="band-listing">'+band+'</span> ';
+						} )
+						.reduce(reduceFestivalsToHTML);
+					var bandCircles = savedBands
+						.map(mapBandToSmallPhoto);
+
+					console.log('Saved bands is ', savedBands, bandCircles);
+					$bandCircles.html(bandCircles);
+
+					$festivalTitleElement.text( selectedFestival.name );
+					$festivalBandResultsText.html( lineup );
+					$festivalBandResultsWrapper.show();
+					$('.tooltipped').tooltip({delay: 50});
+
+					$('html, body').animate({
+						scrollTop: $('#curated_festival_results').offset().top,
+					});
+					
+					$.ajax({
+							method: 'POST',
+							url: 'http://localhost:5000/findbands',
+							data: JSON.stringify({
+								'bands': savedBands,
+								'fest': $id
+							}),
+							processData: false,
+							contentType: 'application/json',
+
+						})
+						.success( function( data ) {
+							console.log("Got success curating the bands at the fest", data);
+
+							var bandList = data
+									.sort(sortBandsByDistance)
+									.map(mapBandToElement)
+									.slice(0, 6)
+									.reduce(reduceFestivalsToHTML);
+
+							var bandRecs = '<h3>you should check out</h3>';
+							bandRecs += '<div class="row center-align">';
+							bandRecs += bandList;
+							bandRecs += '</div>';
+							//bandRecs += '<ul class="collection">';
+							//bandRecs += bandList;
+							//bandRecs += '</ul>';
+							var $bandRecs = $('#band_recs');
+							$bandRecs.html(bandRecs);
+							/*
+							$('.select-festival-btn').on('click', selectedFestival);
+
+							$('html, body').animate({
+								scrollTop: $('#festival_recs_container').offset().top,
+								});*/
+						} )
+						.error( function( err ) {
+							console.log("Got an error curating the bands at the fest", err);
+						} );
+					
+				}
 				function sortFestivalsByDistance( a, b ){
-					if(a.distance > b.distance){
+					if(a.weighted_dist > b.weighted_dist){
 						return -1;
-					}else if( a.distance < b.distance ){
+					}else if( a.weighted_dist < b.weighted_dist ){
 						return 1
 					}else{
 						return 0;
 					}
 				}
+
+				function sortBandsByDistance( a, b ){
+					if(a.min < b.min){
+						return -1;
+					}else if( a.min > b.min ){
+						return 1
+					}else{
+						return 0;
+					}
+				}
+
 				function mapFestivalToElement( festival ){
 					var html = '<li class="collection-item">';
-					html += '<div class="row">';
+					html += '<div class="row valign-wrapper">';
 					html += '<div class="col s3">';
 					html += '<img src="'+festival.image+'" alt="Image"/>';
 					html += '</div>';
-					html += '<div class="col s9">';
+					html += '<div class="col s7">';
 					html += '<h4><a href="'+festival.website+'">' + festival.name + '</a></h4>';
 					html += '<p class="flow-text">' + festival.location + '&emsp;' + festival.start_date.substr(0, festival.start_date.length-13) + '&mdash;' + festival.end_date.substr(0, festival.end_date.length-13) + '</p>';
 
 					html += '<p><span style="text-transform: capitalize;">' + festival.lineup.slice(0, 5).join(', ') + '</span>' + (festival.lineup.length > 5 ? ('... plus ' + ( festival.lineup.length - 5 ) + ' more bands.') : '') + '</p>';
 					html += '</div>';
+					html += '<div class="col s2 right-align">';
+					html += '<a data-festivalid="'+festival.id+'" class="select-festival-btn waves-effect waves-light btn-large" href="#">Select</a>';
+					html += '</div>';
 					html += '</div>';
 					html += '</li>';
 					return html;
+				}
+
+				function mapBandToElement( band ){
+					console.log('Band is', band);
+					var html = '<div class="col s2">';
+					html += '<div class="row">';
+					html += '<div class="col s12">';
+					html += '<img class="responsive-img" src="'+band.pic+'" alt="Band Image" title="'+band.names+'" /><br/>';
+					html += '<h5>' + band.names + '</h5>';
+					html += '</div>';
+					html += '</div>';
+					html += '</div>';
+					return html;
+
+					/*
+					var html = '<li class="collection-item">';
+					html += '<div class="row valign-wrapper">';
+					html += '<div class="col s3">';
+					html += '<img src="'+band.pic+'" alt="Image"/>';
+					html += '</div>';
+					html += '<div class="col s7">';
+					html += '<h4>' + band.names + '</h4>';
+					html += '</div>';
+					html += '<div class="col s2 right-align">';
+					html += '</div>';
+					html += '</div>';
+					html += '</li>';
+					*/
+					//return html;
+				}
+
+				function mapBandToSmallPhoto( band ){
+					console.log('Band is', band);
+					var html = "";
+					html += "<img style='max-width: 80px;' class='responsive-img circle tooltipped' data-position='bottom' data-delay='50' data-tooltip='"+ band +"' src='http://www2.pictures.zimbio.com/mp/RyOQVmpiyZB+O937YJarJVm+594x400.jpg' alt='Band photo' />&nbsp;";
+					return html;
+
 				}
 				function reduceFestivalsToHTML( accum, item ){
 					return accum + item;
 				}
 				$(document).ready(function(){
-						$('#modal').modal();
+						$('#modal, #modal2, #spotify_modal').modal();
 
-
-						$('#search_artists_button').click( function( e ) {
+						$('#find_festivals_button').click( function( e ) {
 							e.preventDefault();
-							console.log( 'Clicked on discover festivals', e );
-							var artistNames = $('#artist_name_input').val();
-							console.log('Artist names is: ', artistNames);
+							// console.log( 'Clicked on discover festivals', e );
+							var artistNames = $('#discover_artist_input').val();
+							// console.log('Artist names is: ', artistNames);
 							var names = artistNames.split(',');
 							console.log( 'Now names is ', names );
+							savedBands = names;
 							$.ajax({
 								method: 'POST',
 								url: 'http://localhost:5000/findfest',
@@ -228,31 +372,35 @@
 							})
 							.success( function( successResponse ) {
 								console.log( 'Got success from the server: ', successResponse );
+								savedFestivals = successResponse;
 
 								var festivalList = successResponse
 									.sort(sortFestivalsByDistance)
 									.map(mapFestivalToElement)
-									.slice(0, 5)
+									.slice(0, 10)
 									.reduce(reduceFestivalsToHTML);
 
 								var festivalRecs = '<h3>Festivals</h3>';
 								festivalRecs += '<ul class="collection">';
 								festivalRecs += festivalList;
 								festivalRecs += '</ul>';
-								$('#festival_recs').append(festivalRecs);
-							
+								var $festivalRecs = $('#festival_recs');
+								// console.log('$festivalRecs is ', $festivalRecs);
+								$festivalRecs.html(festivalRecs);
+
+								$('.select-festival-btn').on('click', selectedFestival);
 
 								$('html, body').animate({
 									scrollTop: $('#festival_recs_container').offset().top,
-								})
-								$('#modal').modal('close');
+								});
 							} )
 							.error( function( errorResponse ) {
 								console.log( 'Got an error from the server: ', errorResponse );
 							} );
 						} );
 
-				})
+
+				});
 				</script>
 		</body>
 </html>

@@ -7,6 +7,7 @@ import pickle
 import config
 from collections import defaultdict
 from sklearn import preprocessing
+from sklearn.metrics.pairwise import euclidean_distances
 
 
 #---------- MODEL IN MEMORY----------#
@@ -30,6 +31,12 @@ with open('all_genres.pk1', 'rb') as picklefile:
 
 with open('festivals.pk1', 'rb') as picklefile:
     festivals = pickle.load(picklefile)
+
+with open('artist_average.pk1', 'rb') as picklefile:
+    artist_average = pickle.load(picklefile)
+
+with open ('artist_info.pk1', 'rb') as picklefile:
+    artist_info = pickle.load(picklefile)
 
 
 def user_genres(artists):
@@ -84,6 +91,86 @@ def top_three(genre_list):
             selection.append(top_genre)
         return selection
 
+
+def track_averages(artist):
+    averages = defaultdict(int)
+    if artist in artist_average:
+        return artist_average[artist]
+    else:
+        count = 0
+        danceability = 0
+        energy = 0
+        key = 0
+        loudness = 0
+        speechiness = 0
+        acousticness = 0
+        instrumentalness = 0
+        liveness = 0
+        valence = 0
+        tempo = 0
+        try:
+            artist_id = spotify.search(q='artist:' + artist, type='artist')['artists']['items'][0]['uri']
+            top_tracks = spotify.artist_top_tracks(artist_id)
+            track_features = []
+            for i in range(0, len(top_tracks['tracks'])):
+                song_id = str(top_tracks['tracks'][i]['uri'])
+                features = spotify.audio_features(song_id)
+                track_features.append(features)
+            for track in track_features:
+                count += 1.0
+                danceability += track[0]['danceability']
+                energy += track[0]['energy']
+                key += track[0]['key']
+                loudness += track[0]['loudness']
+                speechiness += track[0]['speechiness']
+                acousticness += track[0]['acousticness']
+                instrumentalness += track[0]['instrumentalness']
+                liveness += track[0]['liveness']
+                valence += track[0]['valence']
+                tempo += track[0]['tempo']
+        except TypeError:
+            next
+        except IndexError:
+            next
+        if count == 0:
+            count = 1
+        averages['danceability'] = danceability / count
+        averages['energy'] = energy / count
+        averages['key'] = key / count
+        averages['loudness'] = loudness / count
+        averages['speechiness'] = speechiness / count
+        averages['acousticness'] = acousticness / count
+        averages['instrumentalness'] = instrumentalness / count
+        averages['liveness'] = liveness / count
+        averages['valence'] = valence / count
+        averages['tempo'] = tempo / count
+        try:
+            averages['genres'] = spotify.search(q='artist:' + artist, type='artist')['artists']['items'][0]['genres']
+        except IndexError:
+            averages['genres'] = []
+        return averages
+
+
+
+def artist_genre_replace(g_list):
+    genre_string = ''
+    if g_list:
+        for i in range(0, len(g_list)):
+            g_list[i] = replace_genre(g_list[i])
+        new_genres = list(set(g_list))
+        genre_string = ",".join(new_genres)
+    return genre_string
+
+
+def get_image(x):
+    try:
+        return artist_info[x]['images'][0]['url']
+    except IndexError:
+        return 'http://www2.pictures.zimbio.com/mp/RyOQVmpiyZB+O937YJarJVm+594x400.jpg'
+    except KeyError:
+        return 'http://www2.pictures.zimbio.com/mp/RyOQVmpiyZB+O937YJarJVm+594x400.jpg'
+
+
 #----------WEB APP----------#
 
 # Initialize the app
@@ -100,7 +187,10 @@ def viz_page():
 @app.route("/findfest", methods=["POST"])
 def findfest():
     data = flask.request.json
+    print data
     user_artists = data['bands']
+    for i in range(0, len(user_artists)):
+        user_artists[i] = user_artists[i].strip()
     user = user_genres(user_artists)
     user_df = fest_genres_norm.append(user)
     user_df = user_df.fillna(0)
@@ -134,6 +224,56 @@ def findfest():
     for key, value in results_dict.items():
         results.append(value)
     return flask.jsonify(results)
+
+
+@app.route("/findbands", methods=["POST"])
+def findbands():
+    data = flask.request.json
+    user_artists = data['bands']
+    for i in range(0, len(user_artists)):
+        user_artists[i] = user_artists[i].strip()
+    fest = data['fest']
+    user_artist_average = defaultdict(dict)
+    for i, artist in enumerate(user_artists):
+        user_artist_average['user' + str(i)] = track_averages(artist)
+    user_df = pd.DataFrame(user_artist_average).T
+    artists = pd.DataFrame(artist_average).T
+    artists = artists.append(user_df)
+    artists['genres'] = artists['genres'].apply(artist_genre_replace)
+    df_genre = artists['genres'].str.get_dummies(sep=',')
+    artist_recommend = pd.concat([artists, df_genre], axis=1)
+    artist_recommend.drop('genres', axis=1, inplace=True)
+    artist_recommend.fillna(0)
+    user_fest = fest
+    lineup = festivals[festivals.id == user_fest]['lineup']
+    recommend_df = artist_recommend.loc[list(lineup)[0]]
+    recommend_df = recommend_df.fillna(0)
+    user_df = artist_recommend.loc[list(user_df.index)]
+    user_df = user_df.fillna(0)
+    artist_distances = pd.DataFrame(
+        list(recommend_df.index), 
+        index=list(recommend_df.index), 
+        columns=['names']
+    )
+    for i in range(0, len(user_df)):
+        user_case = user_df.ix[i,:]
+        distances = pd.DataFrame(
+            euclidean_distances(recommend_df, user_case.reshape(1, -1)),
+            index = list(recommend_df.index),
+            columns=['distance' + str(i)]
+        )
+        artist_distances = pd.concat([artist_distances, distances], axis=1)
+    artist_distances['min'] = artist_distances[list(artist_distances.columns[1:])].min(axis=1)
+    artist_distances = artist_distances.sort_values("min")
+    df = artist_distances[['names', 'min']]
+    df['pic'] = df['names'].apply(get_image)
+    results_dict = df.to_dict(orient='index')
+    results = []
+    for key, value in results_dict.items():
+        results.append(value)
+    return flask.jsonify(results)
+
+
 
 if __name__ == '__main__':
    app.run(debug=True)
