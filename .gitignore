@@ -15,3 +15,5 @@ musicfest/scrapy_festivals_add.json
 replace_dict.pk1
 musicfest/.scrapy/
 artist_dict.pk1
+musicfest/festivals.json
+
