@@ -24,7 +24,7 @@
 				<div class="navbar-fixed">
 						<nav>
 								<div class="nav-wrapper amber darken-2">
-										<a href="#" class="brand-logo">&nbsp;&nbsp;bandwagon</a>
+										<a href="#" class="brand-logo">&nbsp;&nbsp;band<span class='fa fa-user-secret'></span>bandit</a>
 										<ul id="nav-mobile" class="right hide-on-med-and-down" style='font-weight: bold;'>
 												<li><a href="#discover">DISCOVER</a></li>
 												<li><a href="#curate">CURATE</a></li>
@@ -39,7 +39,7 @@
 						<div class='container' style='align-self: center; z-index: 1;'>
 								<h3 class='white-text center-align'><span>Discover the right music festival. Curate your experience.</span></h3>
 								<h3 class='white-text center-align'><span>Our algorithm can help.</span></h3>
-								<p class='center-align'><br/><a href='#discover' class="waves-effect waves-light btn-large pink lighten-2">Discover</a>&emsp;<a href='#curate' class="waves-effect waves-light btn-large pink lighten-2">Curate</a></p>
+								<p class='center-align'><br/><a id="discover_button"  href='#discover' class="waves-effect waves-light btn-large pink lighten-2">Discover</a>&emsp;<a id="curate_button" href='#curate' class="waves-effect waves-light btn-large pink lighten-2">Curate</a></p>
 						</div>
 				</div>
 				<div class='bigbg valign-wrapper blue-grey lighten-5' style='height: 60vh;'>
@@ -60,7 +60,7 @@
 														<h4>Discover Events</h4>
 														<p class='flow-text'>Type in your favorite artist to get started.</p>
 														<form id='discover_festivals_form'>
-															<input autofocus placeholder="Enter band names and press enter" id="discover_artist_input" type="text" class="validate">
+															<input placeholder="Enter band names and press enter" id="discover_artist_input" type="text" class="validate">
 															<p class='right-align'><button type='submit' href='#' id='find_festivals_button' class="waves-effect waves-light btn-large pink lighten-2">Find Festivals</button></p>
 														</form>
 												</div>
@@ -116,7 +116,7 @@
 						<div class="container">
 								<div class="row">
 										<div class="col l6 s12">
-												<h4 class="white-text">bandwagon</h4>
+												<h4 class="white-text">band<i class="fa fa-user-secret" aria-hidden="true"></i>bandit</h4>
 												<p class="grey-text text-lighten-4">Because Learning Man wasn't a good enough name. Find your favorite festival!</p>
 										</div>
 										<div class="col l4 offset-l2 s12">
@@ -351,9 +351,16 @@
 					return accum + item;
 				}
 				$(document).ready(function(){
+					//console.log("Checking");
 						$('#modal, #modal2, #spotify_modal').modal();
-
+						$('#discover_button').on('click', function(e){
+							//e.preventDefault();
+							//console.log('autofocusing');
+							//$('#discover_artist_input').focus();
+							setTimeout(function () { $('#discover_artist_input').focus(); }, 20);
+						})
 						$('#find_festivals_button').click( function( e ) {
+							console.log('Find festivals button');
 							e.preventDefault();
 							// console.log( 'Clicked on discover festivals', e );
 							var artistNames = $('#discover_artist_input').val();
@@ -398,7 +405,6 @@
 								console.log( 'Got an error from the server: ', errorResponse );
 							} );
 						} );
-
 
 				});
 				</script>

@@ -1,13 +1,12 @@
-X-Cache: MISS
+X-Cache: HIT: 2
 Content-Encoding: gzip
-Vary: Accept-Encoding,Cookie
-X-Cacheable: SHORT
+X-Cacheable: bot
 Server: nginx
 X-Pass-Why: 
-X-Cache-Group: normal
+X-Cache-Group: bot
 Link: <https://www.musicfestivalwizard.com/wp-json/>; rel="https://api.w.org/"
 Link: <https://www.musicfestivalwizard.com/?p=25839>; rel=shortlink
-Cache-Control: max-age=600, must-revalidate
-Date: Thu, 09 Mar 2017 00:37:49 GMT
+Cache-Control: max-age=10800, must-revalidate
+Date: Mon, 05 Jun 2017 01:43:29 GMT
 X-Type: default
 Content-Type: text/html; charset=UTF-8

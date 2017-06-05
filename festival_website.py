@@ -229,6 +229,7 @@ def findfest():
 @app.route("/findbands", methods=["POST"])
 def findbands():
     data = flask.request.json
+    print data
     user_artists = data['bands']
     for i in range(0, len(user_artists)):
         user_artists[i] = user_artists[i].strip()
